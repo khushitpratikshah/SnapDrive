@@ -13,12 +13,14 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
+      # Don't cancel other builds if one fails
+      fail-fast: false
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Setup Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: 20
 
@@ -29,7 +31,7 @@ jobs:
       run: npm run build
 
     - name: Build Electron App
-      run: npx electron-builder --mac --win --linux
+      run: npx electron-builder
       env:
         GH_TOKEN: ${{ secrets.github_token }}
 
