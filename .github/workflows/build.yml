@@ -1,0 +1,44 @@
+name: Build Electron Apps
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Build Next.js
+      run: npm run build
+
+    - name: Build Electron App
+      run: npx electron-builder --mac --win --linux
+      env:
+        GH_TOKEN: ${{ secrets.github_token }}
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: SnapDrive-${{ matrix.os }}
+        path: |
+          dist/*.exe
+          dist/*.zip
+          dist/*.dmg
+          dist/*.AppImage
