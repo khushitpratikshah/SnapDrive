@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&family=Syne:wght@400;500;600;700&display=swap');
+
+:root {
+  /* STEM Racing 2026 Palette */
+  --void-black: #080808;
+  --carbon: #1C1C1E;
+  --carbon-glass: rgba(28, 28, 30, 0.75);
+  --graphite: #3A3A3C;
+  --titanium: #8E8E93;
+  --pearl: #E5E5EA;
+  --pure-white: #FFFFFF;
+  --circuit-cyan: #00D4FF;
+  --boost-blue: #0055FF;
+
+  /* App Theme Mapping */
+  --bg-color: var(--void-black);
+  --panel-bg: var(--carbon-glass);
+  --border-color: var(--graphite);
+  --text-primary: var(--pearl);
+  --text-secondary: var(--titanium);
+  --accent: var(--circuit-cyan);
+  --accent-hover: var(--boost-blue);
+  --accent-glow: rgba(0, 212, 255, 0.35);
+  --success: #10b981;
+  --error: #ef4444;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: 'Syne', 'Exo 2', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(0, 212, 255, 0.08), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(0, 85, 255, 0.08), transparent 25%);
+  background-attachment: fixed;
+}
+
+/* Glassmorphism utilities */
+.glass-panel {
+  background: var(--panel-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
