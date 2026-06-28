@@ -1,0 +1,48 @@
+{
+  "name": "html-to-png-app",
+  "version": "0.1.0",
+  "private": true,
+  "main": "main.js",
+  "author": "Team PixelDrive",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "build:exe": "next build && electron-builder",
+    "build:mac": "next build && electron-builder --mac"
+  },
+  "build": {
+    "appId": "com.pixeldrive.snapdrive",
+    "productName": "SnapDrive",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "out/favicon.ico"
+    },
+    "mac": {
+      "target": "zip"
+    },
+    "files": [
+      "main.js",
+      "out/**/*"
+    ]
+  },
+  "dependencies": {
+    "html-to-image": "^1.11.13",
+    "next": "16.2.9",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "electron": "^42.5.0",
+    "electron-builder": "^26.15.3",
+    "electron-serve": "^3.0.1",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.9",
+    "tailwindcss": "^4"
+  }
+}
